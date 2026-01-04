@@ -89,7 +89,7 @@ nano docker-compose.yml
 
 
 Paste this 👇
-
+```
 version: "3.8"
 
 services:
@@ -109,7 +109,7 @@ services:
     volumes:
       - ./n8n_data:/home/node/.n8n
     restart: unless-stopped
-
+```
 
 ⚠️ Replace:
 
