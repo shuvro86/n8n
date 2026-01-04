@@ -11,6 +11,7 @@ You want web access to n8n
 Later you can add domain + HTTPS
 
 🧠 Architecture (simple)
+```
 Internet
    ↓
 AWS EC2 (Ubuntu)
@@ -18,6 +19,7 @@ AWS EC2 (Ubuntu)
 Docker
    ↓
 n8n container
+```
 
 ✅ STEP 1: Launch EC2 Instance
 
@@ -40,52 +42,53 @@ Allow HTTP (80) (or custom port 5678)
 Launch instance
 
 🔐 STEP 2: Connect to EC2
-ssh -i your-key.pem ubuntu@EC2_PUBLIC_IP
+```ssh -i your-key.pem ubuntu@EC2_PUBLIC_IP```
 
 
 Update system:
 
-sudo apt update && sudo apt upgrade -y
+```sudo apt update && sudo apt upgrade -y```
 
 🐳 STEP 3: Install Docker
-sudo apt install docker.io -y
+```sudo apt install docker.io -y```
 
 
 Enable Docker:
-
+```
 sudo systemctl start docker
 sudo systemctl enable docker
-
+```
 
 Allow non-root Docker usage:
-
+```
 sudo usermod -aG docker ubuntu
 newgrp docker
-
+```
 
 Verify:
 
-docker --version
+```docker --version```
 
 🧩 STEP 4: Install Docker Compose
-sudo apt install docker-compose-plugin -y
+```sudo apt install docker-compose-plugin -y```
 
 
 Verify:
 
-docker compose version
+```docker compose version```
 
 📁 STEP 5: Create n8n Project Directory
+```
 mkdir ~/n8n
 cd ~/n8n
-
+```
 
 Create volume folder:
 
-mkdir n8n_data
+```mkdir n8n_data```
 
 📄 STEP 6: Create docker-compose.yml
-nano docker-compose.yml
+```nano docker-compose.yml```
 
 
 Paste this 👇
@@ -122,7 +125,7 @@ Save:
 CTRL + O → Enter → CTRL + X
 
 ▶️ STEP 7: Start n8n
-docker compose up -d
+```docker compose up -d```
 
 
 Check:
@@ -140,7 +143,7 @@ Source	0.0.0.0/0
 
 Open browser:
 
-http://EC2_PUBLIC_IP:5678
+```http://EC2_PUBLIC_IP:5678```
 
 
 Login with:
@@ -160,7 +163,7 @@ Instead of:
 
 Use:
 
-https://n8n.yourdomain.com
+```https://n8n.yourdomain.com```
 
 
 High-level steps:
@@ -179,19 +182,19 @@ Reverse proxy to n8n
 
 Stop:
 
-docker compose down
+```docker compose down```
 
 
 Logs:
 
-docker compose logs -f
+```docker compose logs -f```
 
 
 Update n8n:
-
+```
 docker compose pull
 docker compose up -d
-
+```
 🧠 Best Practices (Important)
 
 ✅ Always use Docker
